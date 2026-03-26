@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para ti 💕</title>
+
+<style>
+    body {
+    background: url("foto1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 30px;
+}
+    h1 {
+        margin-bottom: 30px;
+    }
+
+    .barra-container {
+        width: 80%;
+        margin: 20px auto;
+        text-align: left;
+    }
+
+    .label {
+        margin-bottom: 5px;
+    }
+
+    .barra {
+        width: 100%;
+        background: #333;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .progreso {
+        height: 25px;
+        width: 0;
+        background: linear-gradient(90deg, #00ffcc, #00ff88);
+        border-radius: 20px;
+    }
+
+    .porcentaje {
+        text-align: right;
+        font-size: 14px;
+        margin-top: 3px;
+    }
+
+    .procesando {
+     margin-top: 40px;
+     font-size: 16px;
+     opacity: 0.9;
+    }
+
+    button {
+        margin-top: 30px;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 20px;
+        background: #00ffcc;
+        color: black;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    #mensaje {
+        margin-top: 30px;
+        font-size: 18px;
+        display: none;
+        line-height: 1.5;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>📊Mi estado cuando hablo contigo</h1>
+
+<div class="barra-container">
+    <div class="label">Lo feliz que me pongo cuando te veo💗</div>
+    <div class="barra"><div class="progreso" id="barra1"></div></div>
+    <div class="porcentaje" id="p1">0%</div>
+</div>
+
+<div class="barra-container">
+    <div class="label">Mi interes por ti💘</div>
+    <div class="barra"><div class="progreso" id="barra2"></div></div>
+    <div class="porcentaje" id="p2">0%</div>
+</div>
+
+<div class="barra-container">
+    <div class="label">Mis ganas de abrazarte💞</div>
+    <div class="barra"><div class="progreso" id="barra3"></div></div>
+    <div class="porcentaje" id="p3">0%</div>
+</div>
+
+<div class="barra-container">
+    <div class="label">Lo importante que eres para mí💖</div>
+    <div class="barra"><div class="progreso" id="barra4"></div></div>
+    <div class="porcentaje" id="p4">0%</div>
+</div>
+
+<p class="procesando">Procesando desde que te conocí…</p>
+<button onclick="mostrarMensaje()">Ver resultado Final ⬇</button>
+
+<div id="mensaje">
+    <p>
+    La verdad hice esto porque me pareces una persona muy especial.
+Me gusta mucho hablar contigo, pasar tiempo contigo y hacerte reír.<br><br>
+
+No sé en qué momento empezaste a importarme tanto,
+pero ahora ya formas parte de mis pensamientos todos los días.<br><br>
+
+No esperaba que alguien se volviera tan importante para mí tan rápido,
+pero supongo que a veces las personas correctas llegan sin avisar♥️.<br><br>
+
+    </p>
+</div>
+
+<script>
+function llenarBarra(idBarra, idPorcentaje, porcentajeFinal, callback) {
+    let barra = document.getElementById(idBarra);
+    let texto = document.getElementById(idPorcentaje);
+    let progreso = 0;
+
+    let intervalo = setInterval(() => {
+        progreso++;
+        barra.style.width = progreso + "%";
+        texto.innerText = progreso + "%";
+
+        if (progreso >= porcentajeFinal) {
+            clearInterval(intervalo);
+            if (callback) callback();
+        }
+    }, 20);
+}
+
+window.onload = function() {
+    llenarBarra("barra1", "p1", 100, function() {
+        llenarBarra("barra2", "p2", 100, function() {
+            llenarBarra("barra3", "p3", 100, function() {
+                llenarBarra("barra4", "p4", 100);
+            });
+        });
+    });
+}
+
+function mostrarMensaje() {
+    document.getElementById("mensaje").style.display = "block";
+}
+</script>
+
+</body>
+</html>
